@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Font Test</title>
+  <style>
+    @font-face {
+      font-family: 'Schnyder';
+      src: url('./client/src/assets/fonts/schnyder-s-normal-700.woff') format('woff'),
+           url('./client/src/assets/fonts/schnyder-s-normal-700.ttf') format('truetype');
+    }
+    body {
+      font-family: 'Schnyder', serif;
+      font-size: 48px;
+      padding: 50px;
+      background: #111;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Schnyder Font Test</h1>
+  <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+  <p>abcdefghijklmnopqrstuvwxyz</p>
+  <p>0123456789</p>
+</body>
+</html>

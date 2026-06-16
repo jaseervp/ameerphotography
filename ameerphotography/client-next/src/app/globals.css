@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-dark: var(--color-dark);
+  --color-light: var(--color-light);
+  --color-base: var(--color-bg-base);
+  --color-theme-bg: var(--color-bg-base);
+  --color-on-primary: var(--color-on-primary);
+  --color-on-light: var(--color-on-light);
+  --color-border-light: var(--color-border-light);
+  --color-border-dark: var(--color-border-dark);
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+  --font-crake: "Cinzel", serif;
+  --font-schnyder: "Schnyder", serif;
+  --font-schnyderScond: "Schnyder-Scond", serif;
+}
+
+@font-face {
+  font-family: 'Crake';
+  src: url('/assets/fonts/craketest-regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Crake';
+  src: url('/assets/fonts/craketest-bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Schnyder';
+  src: url('/assets/fonts/schnyder-s-normal-600.woff') format('woff'),
+       url('/assets/fonts/schnyder-s-normal-600.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Schnyder';
+  src: url('/assets/fonts/schnyder-s-normal-700.woff') format('woff'),
+       url('/assets/fonts/schnyder-s-normal-700.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Schnyder-Scond';
+  src: url('/assets/fonts/schnyder-scond-normal-300.woff') format('woff'),
+       url('/assets/fonts/schnyder-scond-normal-300.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  :root {
+    --color-primary: #0D0D0D;
+    /* Main text/action color */
+    --color-secondary: #7A7A7A;
+    --color-bg-base: #F3F0EA;
+    /* Background color */
+    --color-light: #F2EFEA;
+    --color-dark: #0D0D0D;
+    --color-border-light: #D1CFC9;
+    --color-border-dark: #2A2A2A;
+
+    /* Contrast Helpers */
+    --color-on-primary: #FFFFFF;
+    --color-on-light: #0D0D0D;
+  }
+
+  .dark {
+    --color-primary: #FFFFFF;
+    --color-secondary: #B3B3B3;
+    --color-bg-base: #0D0D0D;
+    --color-light: #181818;
+    --color-dark: #0D0D0D;
+    /* Keep as dark for contrast on light things */
+    --color-border-light: #2A2A2A;
+    --color-border-dark: #FFFFFF;
+
+    /* Contrast Helpers */
+    --color-on-primary: #000000;
+    --color-on-light: #FFFFFF;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overscroll-behavior-y: contain;
+    @apply bg-base text-primary font-body antialiased transition-colors duration-500 ease-out;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  a,
+  button {
+    touch-action: manipulation;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-normal;
+  }
+}
+
+.yarl__container {
+  background-color: rgba(0, 0, 0, 0.97) !important;
+}
+
+@media (max-width: 767px) {
+
+  .yarl__navigation_prev,
+  .yarl__navigation_next {
+    display: none !important;
+  }
+}
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: -6px;
+  /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 6px;
+  /* gutter size */
+  background-clip: padding-box;
+}
+
+.my-masonry-grid_column>div {
+  margin-bottom: 6px;
+}
+
+/* SweetAlert2 Global Customizations */
+div:where(.swal2-container) div:where(.swal2-popup) {
+  background-color: var(--color-bg-base);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+}
+
+.dark div:where(.swal2-container) div:where(.swal2-popup) {
+  background-color: var(--color-bg-base);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+div:where(.swal2-container) h2:where(.swal2-title) {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+div:where(.swal2-container) div:where(.swal2-html-container) {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:hover {
+  opacity: 0.85;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border-radius: 9999px;
+  padding: 1rem 2.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:hover {
+  background-color: rgba(0,0,0,0.05);
+  color: var(--color-primary);
+}
+
+.dark div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+div:where(.swal2-icon).swal2-success {
+  border-color: #22c55e;
+}
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+  background-color: #22c55e;
+}
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+div:where(.swal2-icon).swal2-error {
+  border-color: #ef4444;
+}
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+  background-color: #ef4444;
+}
