@@ -135,8 +135,8 @@ const BookingForm = ({ defaultService = '' }) => {
   };
 
 
-  const labelClass = "block text-[11px] uppercase tracking-[0.2em] font-semibold text-primary/70 mb-3 ml-2";
-  const inputClass = "w-full bg-white border border-black/15 px-6 py-5 rounded-2xl focus:outline-none focus:border-black/40 focus:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-500 text-primary placeholder:text-secondary/40 font-light text-base";
+  const labelClass = "block text-[10px] uppercase tracking-[0.15em] font-medium text-primary/50 mb-2 ml-1";
+  const inputClass = "w-full bg-transparent border-b border-black/10 dark:border-white/10 pb-3 pt-1 focus:outline-none focus:border-black/50 dark:focus:border-white/50 transition-colors duration-300 text-primary placeholder:text-primary/30 font-light text-base rounded-none";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
@@ -252,7 +252,7 @@ const BookingForm = ({ defaultService = '' }) => {
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="group relative inline-flex items-center justify-center gap-4 bg-primary text-on-primary px-12 py-5 rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_15px_40px_rgba(255,255,255,0.15)] disabled:opacity-50"
+          className="group relative w-full md:w-auto inline-flex items-center justify-center gap-4 bg-[#111111] dark:bg-white text-white dark:text-black px-16 py-5 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl disabled:opacity-50"
         >
           <div className="absolute inset-0 bg-white/20 dark:bg-black/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
           <span className="relative z-10 tracking-[0.25em] uppercase text-[11px] font-bold">
