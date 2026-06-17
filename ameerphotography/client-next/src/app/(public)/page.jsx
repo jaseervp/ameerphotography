@@ -99,7 +99,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col group focus:outline-none"
+              className="flex flex-col group focus:outline-none cursor-pointer"
               tabIndex="0"
             >
               {/* The "Frame" */}
@@ -108,7 +108,7 @@ const Home = () => {
                   <ImageWithLoader
                     src={getImageUrl(photo.url)}
                     alt={photo.alt}
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-105 group-focus:grayscale-0 group-focus:scale-105 group-active:grayscale-0 group-active:scale-105"
+                    className="w-full h-full object-cover grayscale transition-all duration-[800ms] ease-in-out group-hover:grayscale-0 group-hover:scale-105 group-focus:grayscale-0 group-focus:scale-105 group-active:grayscale-0 group-active:scale-105"
                     loading="lazy"
                   />
                   {/* Subtle Overlay Fade */}

@@ -52,15 +52,13 @@ const BookingForm = ({ defaultService = '' }) => {
       confirmButtonText: 'Confirm',
       cancelButtonText: 'Cancel',
       customClass: {
-        popup: 'bg-[#181818] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-xl max-w-[90%] md:max-w-[400px]',
-        title: 'text-2xl font-heading text-white mb-2',
-        htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
-        confirmButton: 'bg-white text-black px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white/90 transition-all shadow-lg shadow-white/5 mx-2',
-        cancelButton: 'bg-transparent border border-white/20 text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:border-white transition-all mx-2'
+        popup: 'bg-white border border-black/5 rounded-[2rem] p-10 max-w-[90%] md:max-w-[400px] shadow-2xl',
+        title: 'text-2xl font-heading text-black mb-2',
+        htmlContainer: 'text-sm font-light text-black/60 mb-8',
+        confirmButton: 'bg-black text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:shadow-xl transition-all mx-2',
+        cancelButton: 'bg-transparent border border-black/20 text-black px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:border-black transition-all mx-2'
       },
       buttonsStyling: false,
-      background: '#181818',
-      color: '#ffffff',
     });
 
     if (result.isConfirmed) {
@@ -68,23 +66,7 @@ const BookingForm = ({ defaultService = '' }) => {
       try {
         const res = await createEnquiry(data);
         
-        // Show success alert
-        await Swal.fire({
-          title: 'Journey Submitted',
-          text: 'Your inquiry has been successfully sent. We’ll connect with you soon.',
-          icon: 'success',
-          customClass: {
-            popup: 'bg-[#181818] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-xl max-w-[90%] md:max-w-[400px]',
-            title: 'text-2xl font-heading text-white mb-2',
-            htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
-            confirmButton: 'bg-white text-black px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white/90 transition-all shadow-lg shadow-white/5'
-          },
-          buttonsStyling: false,
-          background: '#181818',
-          color: '#ffffff',
-        });
-
-        // Open WhatsApp with pre-filled message
+        // Open WhatsApp with pre-filled message first
         const formattedDate = new Date(data.eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
         const waMessage = encodeURIComponent(
           `Hello Ameer Photography! 📸\n\n` +
@@ -100,18 +82,22 @@ const BookingForm = ({ defaultService = '' }) => {
         );
         window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${waMessage}`, '_blank');
 
-        // Redirect to success page with data
-        router.push('/booking-success', { 
-          state: { 
-            booking: {
-              id: res.data.data?._id || 'pending',
-              serviceName: data.serviceType,
-              userName: data.name,
-              date: data.eventDate,
-              time: data.time
-            } 
-          } 
+        // Then show success modal (replaces the redirect)
+        await Swal.fire({
+          title: 'Thank You!',
+          text: 'Your journey has been successfully submitted to us via WhatsApp. We’ll connect with you very soon.',
+          icon: 'success',
+          customClass: {
+            popup: 'bg-white border border-black/5 rounded-[2rem] p-10 shadow-2xl max-w-[90%] md:max-w-[400px]',
+            title: 'text-2xl font-heading text-black mb-2',
+            htmlContainer: 'text-sm font-light text-black/60 mb-8',
+            confirmButton: 'bg-black text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:shadow-xl transition-all'
+          },
+          buttonsStyling: false,
         });
+
+        // Reset the form if needed
+        // reset(); // Assuming we want them to stay on the page with their details, we won't reset.
       } catch (err) {
         console.error('Error submitting form', err);
         Swal.fire({
@@ -119,14 +105,12 @@ const BookingForm = ({ defaultService = '' }) => {
           text: 'Something went wrong. Please try again.',
           icon: 'error',
           customClass: {
-            popup: 'bg-[#181818] border border-white/10 rounded-[2.5rem] p-10 backdrop-blur-xl max-w-[90%] md:max-w-[400px]',
-            title: 'text-2xl font-heading text-white mb-2',
-            htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
-            confirmButton: 'bg-white text-black px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-white/90 transition-all shadow-lg shadow-white/5'
+            popup: 'bg-white border border-black/5 rounded-[2rem] p-10 max-w-[90%] md:max-w-[400px] shadow-2xl',
+            title: 'text-2xl font-heading text-black mb-2',
+            htmlContainer: 'text-sm font-light text-black/60 mb-8',
+            confirmButton: 'bg-black text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:shadow-xl transition-all'
           },
           buttonsStyling: false,
-          background: '#181818',
-          color: '#ffffff',
         });
       } finally {
         setIsSubmitting(false);
