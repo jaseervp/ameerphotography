@@ -72,15 +72,7 @@ const FireHero = ({ photos = [] }) => {
       {/* Content Layer */}
       <div className="relative z-30 flex flex-col items-center text-white text-center max-w-4xl px-6">
         
-        {/* Subtle top subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 0.6 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-[10px] uppercase tracking-[0.6em] font-semibold text-white/80 mb-6"
-        >
-          FINE ART WEDDING & PORTRAIT IMAGERY
-        </motion.p>
+        {/* Removed top subheadline */}
 
         {/* Brand Main Title (Letters Reveal) */}
         <h1 className="flex flex-wrap justify-center gap-x-2 md:gap-x-4 text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-schnyder tracking-widest text-white leading-none">
@@ -124,19 +116,7 @@ const FireHero = ({ photos = [] }) => {
           Every Frame. Every Feeling.
         </motion.p>
 
-        {/* Explore Portfolio CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 3.2 }}
-        >
-          <Link href="/portfolio"
-            className="group inline-flex items-center gap-4 bg-white hover:bg-transparent text-black hover:text-white border border-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all duration-500 shadow-2xl hover:shadow-none"
-          >
-            Explore Portfolio
-            <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-          </Link>
-        </motion.div>
+        {/* Removed Explore Portfolio CTA Button */}
       </div>
 
       {/* Scroll Down Indicator */}
