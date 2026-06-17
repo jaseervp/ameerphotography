@@ -108,8 +108,8 @@ const Reviews = () => {
     }
   };
 
-  const labelClass = 'block text-[10px] uppercase tracking-[0.3em] font-bold text-primary/40 mb-2';
-  const inputClass = 'w-full bg-transparent border-b-[1.5px] border-black/30 dark:border-white/20 py-4 focus:outline-none focus:border-black dark:focus:border-white transition-all duration-500 text-primary placeholder:text-secondary/30 font-light text-base';
+  const labelClass = 'block text-[10px] uppercase tracking-[0.15em] font-medium text-black/50 mb-2 ml-1';
+  const inputClass = 'w-full bg-transparent border-b border-black/10 pb-3 pt-1 focus:outline-none focus:border-black/50 transition-colors duration-300 text-black placeholder:text-black/30 font-light text-base rounded-none';
 
   return (
     <motion.div
@@ -153,7 +153,7 @@ const Reviews = () => {
 
           {/* LEFT: Submit Review Form */}
           <div>
-            <div className="bg-primary/[0.01] border border-black/10 dark:border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.06)] dark:shadow-none p-10 md:p-14 rounded-[2.5rem]">
+            <div className="bg-white border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.05)] p-10 md:p-14 rounded-[2rem]">
               
               <div className="mb-12">
                 <h2 className="text-2xl font-heading mb-2">Share Your Experience</h2>
@@ -236,14 +236,19 @@ const Reviews = () => {
                       <p className="text-red-500/60 text-[10px] uppercase tracking-wider">{errors.submit}</p>
                     )}
 
-                    <button
-                      type="submit"
-                      disabled={submitting}
-                      className="group flex items-center gap-4 text-primary tracking-[0.3em] uppercase text-[11px] font-bold hover:gap-8 transition-all duration-700 disabled:opacity-50"
-                    >
-                      {submitting ? 'Submitting…' : 'Submit Review'}
-                      <Send size={18} className="text-primary/40 group-hover:text-primary transition-colors" />
-                    </button>
+                    <div className="pt-4 flex justify-end">
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="group relative w-full md:w-auto inline-flex items-center justify-center gap-4 bg-[#111111] text-white px-16 py-5 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl disabled:opacity-50"
+                      >
+                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+                        <span className="relative z-10 tracking-[0.25em] uppercase text-[11px] font-bold">
+                          {submitting ? 'Submitting…' : 'Submit Review'}
+                        </span>
+                        <Send size={16} className="relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
+                      </button>
+                    </div>
                   </motion.form>
                 )}
               </AnimatePresence>
