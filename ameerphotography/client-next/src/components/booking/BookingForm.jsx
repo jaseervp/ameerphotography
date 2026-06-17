@@ -135,8 +135,8 @@ const BookingForm = ({ defaultService = '' }) => {
   };
 
 
-  const labelClass = "block text-[10px] uppercase tracking-[0.15em] font-medium text-primary/50 mb-2 ml-1";
-  const inputClass = "w-full bg-transparent border-b border-black/10 dark:border-white/10 pb-3 pt-1 focus:outline-none focus:border-black/50 dark:focus:border-white/50 transition-colors duration-300 text-primary placeholder:text-primary/30 font-light text-base rounded-none";
+  const labelClass = "block text-[10px] uppercase tracking-[0.15em] font-medium text-black/50 mb-2 ml-1";
+  const inputClass = "w-full bg-transparent border-b border-black/10 pb-3 pt-1 focus:outline-none focus:border-black/50 transition-colors duration-300 text-black placeholder:text-black/30 font-light text-base rounded-none";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
@@ -169,7 +169,7 @@ const BookingForm = ({ defaultService = '' }) => {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className={`${inputClass} flex justify-between items-center pr-4 text-left`}
             >
-              <span className={selectedService ? 'text-primary' : 'text-secondary/30'}>
+              <span className={selectedService ? 'text-black' : 'text-black/30'}>
                 {selectedService ? 
                   [
                     { value: 'Wedding', label: 'Wedding Photography' },
@@ -190,7 +190,7 @@ const BookingForm = ({ defaultService = '' }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute z-50 mt-2 w-full bg-white dark:bg-[#1a1a1a] border border-black/5 dark:border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden"
+                  className="absolute z-50 mt-2 w-full bg-white border border-black/5 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden"
                 >
                   {[
                     { value: 'Wedding', label: 'Wedding Photography' },
@@ -206,9 +206,9 @@ const BookingForm = ({ defaultService = '' }) => {
                         setValue('serviceType', option.value);
                         setIsDropdownOpen(false);
                       }}
-                      className="w-full text-left px-6 py-4 text-sm font-light hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors flex items-center justify-between group"
+                      className="w-full text-left px-6 py-4 text-sm font-light hover:bg-black/5 transition-colors flex items-center justify-between group"
                     >
-                      <span className={selectedService === option.value ? 'text-primary font-medium' : 'text-secondary'}>
+                      <span className={selectedService === option.value ? 'text-black font-medium' : 'text-black/70'}>
                         {option.label}
                       </span>
                       {selectedService === option.value && (
@@ -252,9 +252,9 @@ const BookingForm = ({ defaultService = '' }) => {
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="group relative w-full md:w-auto inline-flex items-center justify-center gap-4 bg-[#111111] dark:bg-white text-white dark:text-black px-16 py-5 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl disabled:opacity-50"
+          className="group relative w-full md:w-auto inline-flex items-center justify-center gap-4 bg-[#111111] text-white px-16 py-5 rounded-full overflow-hidden transition-all duration-500 hover:shadow-xl disabled:opacity-50"
         >
-          <div className="absolute inset-0 bg-white/20 dark:bg-black/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+          <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
           <span className="relative z-10 tracking-[0.25em] uppercase text-[11px] font-bold">
             {isSubmitting ? 'Sending...' : 'Submit Journey'}
           </span>

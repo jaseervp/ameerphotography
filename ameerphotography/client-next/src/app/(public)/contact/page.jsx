@@ -40,7 +40,7 @@ const ContactContent = () => {
 
       {/* Content Area */}
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white dark:bg-zinc-900 border border-black/5 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.05)] dark:shadow-none p-10 md:p-16 rounded-[2rem]">
+        <div className="bg-white border border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.05)] p-10 md:p-16 rounded-[2rem]">
           <div className="mb-12">
             <h4 className="text-2xl font-heading mb-2">Project Brief</h4>
             <p className="text-secondary/50 text-sm font-light">Tell us a little about your vision and what you&apos;re looking for.</p>
