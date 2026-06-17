@@ -135,8 +135,8 @@ const BookingForm = ({ defaultService = '' }) => {
   };
 
 
-  const labelClass = "block text-[10px] uppercase tracking-[0.3em] font-bold text-primary/40 mb-2";
-  const inputClass = "w-full bg-transparent border-b-[1.5px] border-black/40 dark:border-white/30 py-4 focus:outline-none focus:border-black dark:focus:border-white transition-all duration-500 text-primary placeholder:text-secondary/30 font-light rounded-none text-base";
+  const labelClass = "block text-[11px] uppercase tracking-[0.2em] font-semibold text-primary/70 mb-3 ml-2";
+  const inputClass = "w-full bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-6 py-5 rounded-2xl focus:outline-none focus:border-black/30 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/[0.08] focus:shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:focus:shadow-[0_10px_40px_rgba(255,255,255,0.04)] transition-all duration-500 text-primary placeholder:text-secondary/40 font-light text-base";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
@@ -248,14 +248,17 @@ const BookingForm = ({ defaultService = '' }) => {
         <textarea {...register('message')} placeholder="Tell us about your vision, the details, and what matters most to you..." rows="3" className={`${inputClass} resize-none`} />
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="pt-6">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="pt-8 flex justify-end">
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="group flex items-center gap-4 text-primary tracking-[0.3em] uppercase text-[11px] font-bold hover:gap-8 transition-all duration-700 disabled:opacity-50"
+          className="group relative inline-flex items-center justify-center gap-4 bg-primary text-on-primary px-12 py-5 rounded-full overflow-hidden transition-all duration-700 hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_15px_40px_rgba(255,255,255,0.15)] disabled:opacity-50"
         >
-          {isSubmitting ? 'Sending...' : 'Submit Journey'}
-          <ArrowRight size={20} className="text-primary/40 group-hover:text-primary transition-colors" />
+          <div className="absolute inset-0 bg-white/20 dark:bg-black/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.22,1,0.36,1]" />
+          <span className="relative z-10 tracking-[0.25em] uppercase text-[11px] font-bold">
+            {isSubmitting ? 'Sending...' : 'Submit Journey'}
+          </span>
+          <ArrowRight size={16} strokeWidth={2.5} className="relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
         </button>
       </motion.div>
     </form>

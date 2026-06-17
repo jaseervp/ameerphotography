@@ -99,24 +99,25 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.2, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col group"
+              className="flex flex-col group focus:outline-none"
+              tabIndex="0"
             >
               {/* The "Frame" */}
-              <div className="relative p-3 md:p-4 bg-white/5 dark:bg-white/[0.02] border border-primary/5 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.1)] group-hover:bg-white/10 dark:group-hover:bg-white/[0.05]">
+              <div className="relative p-3 md:p-4 bg-white/5 dark:bg-white/[0.02] border border-primary/5 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 group-hover:shadow-[0_30px_70px_rgba(0,0,0,0.1)] group-focus:shadow-[0_30px_70px_rgba(0,0,0,0.1)] group-active:shadow-[0_30px_70px_rgba(0,0,0,0.1)] group-hover:bg-white/10 group-focus:bg-white/10 group-active:bg-white/10 dark:group-hover:bg-white/[0.05] dark:group-focus:bg-white/[0.05] dark:group-active:bg-white/[0.05]">
                 <div className="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-900">
                   <ImageWithLoader
                     src={getImageUrl(photo.url)}
                     alt={photo.alt}
-                    className="w-full h-full object-cover grayscale transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale transition-all duration-1000 ease-out group-hover:grayscale-0 group-hover:scale-105 group-focus:grayscale-0 group-focus:scale-105 group-active:grayscale-0 group-active:scale-105"
                     loading="lazy"
                   />
                   {/* Subtle Overlay Fade */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 </div>
               </div>
 
               {/* Minimal Caption Outside the Frame */}
-              <div className="mt-6 px-2 flex justify-between items-center opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="mt-6 px-2 flex justify-between items-center opacity-60 group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 transition-opacity duration-500">
                 <span className="text-[10px] uppercase tracking-[0.2em] font-medium">{photo.category}</span>
                 <span className="w-10 h-px bg-primary/20" />
               </div>

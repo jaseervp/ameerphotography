@@ -30,7 +30,7 @@ const BottomNav = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-auto flex items-center justify-around w-full max-w-[440px] rounded-full p-1.5 bg-white/50 dark:bg-black/40 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-500 h-[64px]"
+          className="pointer-events-auto flex items-center justify-around w-full max-w-[440px] rounded-full p-1.5 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-500 h-[64px]"
         >
           {navLinks.map(({ to, icon: Icon, label }) => {
             const isActive = pathname === to;

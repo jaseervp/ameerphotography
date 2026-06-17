@@ -83,7 +83,7 @@ const FireHero = ({ photos = [] }) => {
         </motion.p>
 
         {/* Brand Main Title (Letters Reveal) */}
-        <h1 className="flex flex-wrap justify-center gap-x-2 md:gap-x-4 text-5xl sm:text-6xl md:text-8xl font-schnyder tracking-widest text-white leading-none">
+        <h1 className="flex flex-wrap justify-center gap-x-2 md:gap-x-4 text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-schnyder tracking-widest text-white leading-none">
           {title.split(' ').map((word, wordIndex) => (
             <span key={wordIndex} className="inline-flex">
               {word.split('').map((char, charIndex) => {
