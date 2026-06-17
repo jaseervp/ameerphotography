@@ -5,6 +5,7 @@ import { Toaster } from 'sonner';
 export const metadata = {
   title: 'Ameer Photography | Best Wedding Photographers in Kerala',
   description: 'Ameer Photography offers professional wedding photography and cinematic videography in Kerala. Specializing in Muslim wedding photography and creating timeless memories.',
+  colorScheme: 'light',
   openGraph: {
     title: 'Ameer Photography | Best Wedding Photographers in Kerala',
     description: 'Ameer Photography offers professional wedding photography and cinematic videography in Kerala.',
@@ -21,7 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{ colorScheme: 'light' }}>
       <body className="antialiased transition-colors duration-500 ease-out bg-base text-primary font-body">
         <AuthProvider>
           <Toaster position="top-right" expand={false} richColors />

@@ -136,7 +136,7 @@ const BookingForm = ({ defaultService = '' }) => {
 
 
   const labelClass = "block text-[11px] uppercase tracking-[0.2em] font-semibold text-primary/70 mb-3 ml-2";
-  const inputClass = "w-full bg-black/[0.03] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 px-6 py-5 rounded-2xl focus:outline-none focus:border-black/30 dark:focus:border-white/30 focus:bg-white dark:focus:bg-white/[0.08] focus:shadow-[0_10px_40px_rgba(0,0,0,0.06)] dark:focus:shadow-[0_10px_40px_rgba(255,255,255,0.04)] transition-all duration-500 text-primary placeholder:text-secondary/40 font-light text-base";
+  const inputClass = "w-full bg-white border border-black/15 px-6 py-5 rounded-2xl focus:outline-none focus:border-black/40 focus:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-500 text-primary placeholder:text-secondary/40 font-light text-base";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
