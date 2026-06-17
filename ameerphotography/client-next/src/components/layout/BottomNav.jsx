@@ -30,7 +30,7 @@ const BottomNav = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-auto flex items-center justify-around w-full max-w-[440px] rounded-full p-1.5 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-all duration-500 h-[64px]"
+          className="pointer-events-auto flex items-center justify-around w-full max-w-[440px] rounded-full p-1.5 bg-white/95 backdrop-blur-xl border border-black/5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-all duration-500 h-[64px]"
         >
           {navLinks.map(({ to, icon: Icon, label }) => {
             const isActive = pathname === to;
@@ -43,13 +43,13 @@ const BottomNav = () => {
                 {isActive && (
                   <motion.div
                     layoutId="mobile-nav-active-pill"
-                    className="absolute inset-0 bg-primary rounded-full shadow-[0_2px_14px_rgba(0,0,0,0.18)] dark:shadow-none"
+                    className="absolute inset-0 bg-primary rounded-full shadow-[0_2px_14px_rgba(0,0,0,0.18)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
                 
                 {!isActive && (
-                  <div className="absolute inset-0 rounded-full bg-black/5 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 rounded-full bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 )}
 
                 <div className={`relative z-10 flex flex-col items-center justify-center transition-colors duration-300 ${isActive ? 'text-on-primary' : 'text-primary/50 group-hover:text-primary'}`}>
