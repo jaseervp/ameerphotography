@@ -79,13 +79,61 @@ const Admin = () => {
   };
 
   const deleteEnquiry = async (id) => {
-    if (window.confirm('Are you sure you want to delete this enquiry?')) {
+    const result = await Swal.fire({
+      title: 'Delete Enquiry?',
+      text: 'Are you sure you want to delete this enquiry? This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Delete',
+      cancelButtonText: 'No, Cancel',
+      customClass: {
+        popup: 'bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-xl max-w-[90%] md:max-w-[400px]',
+        title: 'text-2xl font-heading text-primary mb-2',
+        htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
+        actions: 'flex flex-col gap-4 w-full items-center',
+        confirmButton: 'bg-red-500 hover:bg-red-600 text-white px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest transition-all shadow-lg w-full max-w-[250px]',
+        cancelButton: 'bg-transparent border border-black/20 text-secondary px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:border-black transition-all w-full max-w-[250px]'
+      },
+      buttonsStyling: false,
+      background: '#ffffff',
+      color: '#000000',
+    });
+
+    if (result.isConfirmed) {
       try {
         await api.delete(`/enquiries/${id}`);
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'The enquiry has been deleted.',
+          icon: 'success',
+          customClass: {
+            popup: 'bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-xl max-w-[90%] md:max-w-[400px]',
+            title: 'text-2xl font-heading text-primary mb-2',
+            htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
+            confirmButton: 'bg-primary text-on-primary px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg'
+          },
+          buttonsStyling: false,
+          background: '#ffffff',
+          color: '#000000',
+        });
         fetchEnquiries();
         fetchStats();
       } catch (err) {
         console.error(err);
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to delete enquiry.',
+          icon: 'error',
+          customClass: {
+            popup: 'bg-white border border-black/5 rounded-[2.5rem] p-10 shadow-xl max-w-[90%] md:max-w-[400px]',
+            title: 'text-2xl font-heading text-primary mb-2',
+            htmlContainer: 'text-sm font-light text-secondary/70 mb-8',
+            confirmButton: 'bg-primary text-on-primary px-10 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg'
+          },
+          buttonsStyling: false,
+          background: '#ffffff',
+          color: '#000000',
+        });
       }
     }
   };
@@ -293,8 +341,8 @@ const Admin = () => {
       </div>
 
       {/* Main Content */}
-      <main className="flex-grow lg:pl-64 pt-20">
-        <div className="max-w-6xl mx-auto p-8 md:p-12">
+      <main className="flex-grow w-full min-w-0 lg:pl-64 pt-20">
+        <div className="max-w-6xl mx-auto p-4 md:p-8 overflow-hidden">
           
           {error ? (
             <div className="min-h-[60vh] flex flex-col items-center justify-center text-center">
@@ -352,23 +400,23 @@ const Admin = () => {
                   </div>
                   <div className="divide-y divide-black/5">
                     {enquiries.slice((currentOverviewPage - 1) * itemsPerOverviewPage, currentOverviewPage * itemsPerOverviewPage).map(enq => (
-                      <div key={enq._id} className="px-8 py-4 flex items-center justify-between hover:bg-light/50 transition-colors">
-                        <div className="flex items-center gap-4">
-                          <div className="w-10 h-10 rounded-full bg-light flex items-center justify-center font-bold text-xs">
+                      <div key={enq._id} className="px-4 md:px-8 py-4 flex items-center justify-between hover:bg-light/50 transition-colors">
+                        <div className="flex items-center gap-2 md:gap-4">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-light flex items-center justify-center font-bold text-xs shrink-0">
                             {enq.name?.charAt(0)}
                           </div>
-                          <div>
-                            <p className="text-xs font-bold">{enq.name}</p>
-                            <p className="text-[10px] text-secondary/40">{enq.serviceType} • {new Date(enq.createdAt).toLocaleDateString()}</p>
+                          <div className="min-w-0">
+                            <p className="text-xs font-bold truncate">{enq.name}</p>
+                            <p className="text-[10px] text-secondary/40 truncate">{enq.serviceType} • {new Date(enq.createdAt).toLocaleDateString()}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-4">
-                          <span className={`text-[9px] uppercase tracking-widest px-3 py-1 rounded-full font-bold ${
+                        <div className="flex items-center gap-2 md:gap-4 shrink-0 pl-2">
+                          <span className={`text-[9px] uppercase tracking-widest px-2 md:px-3 py-1 rounded-full font-bold ${
                             enq.status === 'new' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-500'
                           }`}>
                             {enq.status}
                           </span>
-                          <button onClick={() => setActiveTab('enquiries')} className="p-2 text-secondary/30 hover:text-primary transition-colors">
+                          <button onClick={() => setActiveTab('enquiries')} className="p-1 md:p-2 text-secondary/30 hover:text-primary transition-colors">
                             <Eye size={16} />
                           </button>
                         </div>
@@ -404,27 +452,27 @@ const Admin = () => {
 
             {activeTab === 'enquiries' && (
               <motion.div key="enquiries" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-white rounded-3xl border border-black/5 overflow-hidden shadow-sm">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
+                <div className="overflow-x-auto custom-scrollbar">
+                  <table className="w-full min-w-[800px] text-left border-collapse">
                     <thead>
                       <tr className="border-b border-black/5 text-[10px] uppercase tracking-[0.2em] text-secondary/40">
-                        <th className="px-8 py-6 font-bold">Date</th>
-                        <th className="px-8 py-6 font-bold">Client</th>
-                        <th className="px-8 py-6 font-bold">Service</th>
-                        <th className="px-8 py-6 font-bold">Status</th>
-                        <th className="px-8 py-6 font-bold text-right">Actions</th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 font-bold whitespace-nowrap">Date</th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 font-bold">Client</th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 font-bold">Service</th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 font-bold">Status</th>
+                        <th className="px-4 md:px-8 py-4 md:py-6 font-bold text-right whitespace-nowrap">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-black/5">
                       {enquiries.slice((currentEnquiriesPage - 1) * itemsPerEnquiriesPage, currentEnquiriesPage * itemsPerEnquiriesPage).map(enq => (
                         <tr key={enq._id} className="hover:bg-light/30 transition-colors group">
-                          <td className="px-8 py-5 text-xs font-light">{new Date(enq.createdAt).toLocaleDateString()}</td>
-                          <td className="px-8 py-5">
-                            <p className="text-xs font-bold">{enq.name}</p>
-                            <p className="text-[10px] text-secondary/40">{enq.email}</p>
+                          <td className="px-4 md:px-8 py-4 md:py-5 text-xs font-light whitespace-nowrap">{new Date(enq.createdAt).toLocaleDateString()}</td>
+                          <td className="px-4 md:px-8 py-4 md:py-5">
+                            <p className="text-xs font-bold whitespace-nowrap">{enq.name}</p>
+                            <p className="text-[10px] text-secondary/40 whitespace-nowrap">{enq.email}</p>
                           </td>
-                          <td className="px-8 py-5 text-[11px] font-light text-secondary uppercase tracking-widest">{enq.serviceType}</td>
-                          <td className="px-8 py-5">
+                          <td className="px-4 md:px-8 py-4 md:py-5 text-[11px] font-light text-secondary uppercase tracking-widest whitespace-nowrap">{enq.serviceType}</td>
+                          <td className="px-4 md:px-8 py-4 md:py-5 whitespace-nowrap">
                             <span className={`text-[9px] uppercase tracking-widest px-3 py-1 rounded-full font-bold ${
                               enq.status === 'new' ? 'bg-yellow-50 text-yellow-600' :
                               enq.status === 'confirmed' ? 'bg-green-50 text-green-600' :
@@ -434,15 +482,15 @@ const Admin = () => {
                               {enq.status}
                             </span>
                           </td>
-                          <td className="px-8 py-5 text-right space-x-2">
-                            <button onClick={() => viewEnquiryDetails(enq)} className="p-2 text-secondary/30 hover:text-primary transition-colors" title="View Details"><Eye size={16} /></button>
+                          <td className="px-4 md:px-8 py-4 md:py-5 text-right space-x-2 whitespace-nowrap">
+                            <button onClick={() => viewEnquiryDetails(enq)} className="p-2 text-secondary/30 hover:text-primary transition-colors inline-flex items-center justify-center" title="View Details"><Eye size={16} /></button>
                             {enq.status !== 'confirmed' && (
-                              <button onClick={() => updateEnquiryStatus(enq._id, 'confirmed')} className="p-2 text-secondary/30 hover:text-green-600 transition-colors" title="Confirm Booking"><CheckCircle size={16} /></button>
+                              <button onClick={() => updateEnquiryStatus(enq._id, 'confirmed')} className="p-2 text-secondary/30 hover:text-green-600 transition-colors inline-flex items-center justify-center" title="Confirm Booking"><CheckCircle size={16} /></button>
                             )}
                             {enq.status !== 'rejected' && (
-                              <button onClick={() => updateEnquiryStatus(enq._id, 'rejected')} className="p-2 text-secondary/30 hover:text-red-600 transition-colors" title="Reject Booking"><AlertCircle size={16} /></button>
+                              <button onClick={() => updateEnquiryStatus(enq._id, 'rejected')} className="p-2 text-secondary/30 hover:text-red-600 transition-colors inline-flex items-center justify-center" title="Reject Booking"><AlertCircle size={16} /></button>
                             )}
-                            <button onClick={() => deleteEnquiry(enq._id)} className="p-2 text-secondary/30 hover:text-red-500 transition-colors" title="Delete"><Trash2 size={16} /></button>
+                            <button onClick={() => deleteEnquiry(enq._id)} className="p-2 text-secondary/30 hover:text-red-500 transition-colors inline-flex items-center justify-center" title="Delete"><Trash2 size={16} /></button>
                           </td>
                         </tr>
                       ))}

@@ -117,7 +117,7 @@ const BookingCalendar = () => {
           <p className="text-[10px] uppercase tracking-widest text-secondary/40 font-bold">Booking Schedule</p>
         </div>
         
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           {/* Status Filter */}
           <div className="flex p-1 bg-light rounded-xl text-[9px] uppercase tracking-widest font-bold">
             {['all', 'confirmed', 'completed'].map((s) => (
@@ -149,7 +149,8 @@ const BookingCalendar = () => {
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-px bg-black/5 rounded-2xl overflow-hidden border border-black/5">
+      <div className="overflow-x-auto custom-scrollbar">
+        <div className="grid grid-cols-7 min-w-[800px] gap-px bg-black/5 rounded-2xl overflow-hidden border border-black/5">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
           <div key={d} className="bg-[#FBFBFB] py-4 text-center text-[10px] uppercase tracking-widest font-bold text-secondary/40">
             {d}
@@ -215,6 +216,7 @@ const BookingCalendar = () => {
             </div>
           );
         })}
+        </div>
       </div>
       
       {/* Legend */}
@@ -239,7 +241,7 @@ const BookingCalendar = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-[2.5rem] border border-black/5 shadow-xl max-w-lg w-full p-10 relative"
+              className="bg-white rounded-[2.5rem] border border-black/5 shadow-xl max-w-lg w-full p-6 md:p-10 relative max-h-[90vh] overflow-y-auto custom-scrollbar"
             >
               <button 
                 onClick={() => setSelectedBooking(null)}
@@ -267,7 +269,7 @@ const BookingCalendar = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-light flex items-center justify-center text-secondary/60">
                       <Phone size={16} />
@@ -288,7 +290,7 @@ const BookingCalendar = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-full bg-light flex items-center justify-center text-secondary/60">
                       <Calendar size={16} />
@@ -373,7 +375,7 @@ const BookingCalendar = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-[2.5rem] border border-black/5 shadow-xl max-w-xl w-full p-10 relative max-h-[90vh] overflow-y-auto custom-scrollbar"
+              className="bg-white rounded-[2.5rem] border border-black/5 shadow-xl max-w-xl w-full p-6 md:p-10 relative max-h-[90vh] overflow-y-auto custom-scrollbar"
               onClick={(e) => e.stopPropagation()}
             >
               <button

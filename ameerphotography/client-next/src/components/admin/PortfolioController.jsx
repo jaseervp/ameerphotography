@@ -194,7 +194,7 @@ return (
     <div className="bg-white p-8 rounded-[2.5rem] border border-black/5 shadow-sm">
       <h3 className="text-xl font-heading mb-6">Manage Categories</h3>
 
-      <div className="flex gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <input
           type="text"
           placeholder="New Category Name..."
@@ -204,7 +204,7 @@ return (
         />
         <button
           onClick={addCategory}
-          className="bg-primary text-on-primary px-8 py-3 rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-primary/90 transition-all"
+          className="bg-primary text-on-primary w-full sm:w-auto px-8 py-3 rounded-xl text-[10px] uppercase tracking-widest font-bold hover:bg-primary/90 transition-all shrink-0"
         >
           Add Category
         </button>
