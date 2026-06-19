@@ -217,7 +217,7 @@ const BookingForm = ({ defaultService = '' }) => {
 
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}>
           <label className={labelClass}>Event Time</label>
-          <input {...register('time')} type="time" className={inputClass} />
+          <input {...register('time')} type="text" placeholder="e.g. 10:00 AM - 6:00 PM" className={inputClass} />
           {errors.time && <p className="text-red-500/60 text-[10px] uppercase tracking-wider mt-2">{errors.time.message}</p>}
         </motion.div>
       </div>
