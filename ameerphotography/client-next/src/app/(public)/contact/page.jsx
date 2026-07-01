@@ -53,7 +53,7 @@ const ContactContent = () => {
       <footer className="mt-32 pt-16 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
         <div className="flex items-center gap-4">
           <div className="w-2 h-2 rounded-full bg-green-500/40 animate-pulse" />
-          <p className="text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-medium">Currently accepting bookings for 2025</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-secondary/40 font-medium">Currently accepting bookings for this year</p>
         </div>
         <p className="text-[10px] uppercase tracking-[0.2em] text-secondary/30">
           &copy; 2024 Ameer Photography Studio. All Rights Reserved.
