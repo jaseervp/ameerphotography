@@ -187,7 +187,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-base py-24 md:py-32 px-6 md:px-12 transition-colors duration-500">
+      <section className="bg-base pt-24 md:pt-32 pb-8 md:pb-12 px-6 md:px-12 transition-colors duration-500">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -206,7 +206,7 @@ const Home = () => {
       </section>
 
       {/* About Teaser */}
-      <section className="px-6 md:px-12 py-24 md:py-32 max-w-7xl mx-auto">
+      <section className="px-6 md:px-12 pt-8 md:pt-12 pb-24 md:pb-32 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.8 }}
