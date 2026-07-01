@@ -12,6 +12,7 @@ const BookingCalendar = () => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [filterStatus, setFilterStatus] = useState('all'); // 'all', 'confirmed', 'completed'
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [errors, setErrors] = useState({});
   const [addForm, setAddForm] = useState({
     name: '',
     phone: '',
@@ -25,10 +26,18 @@ const BookingCalendar = () => {
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    if (!addForm.name || !addForm.phone || !addForm.email || !addForm.eventDate || !addForm.serviceType) {
+    const newErrors = {};
+    if (!addForm.name) newErrors.name = 'Client Name is required';
+    if (!addForm.phone) newErrors.phone = 'Phone Number is required';
+    if (!addForm.email) newErrors.email = 'Email Address is required';
+    if (!addForm.eventDate) newErrors.eventDate = 'Event Date is required';
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       toast.error('Please fill in all required fields');
       return;
     }
+    setErrors({});
     
     try {
       await api.post('/enquiries', { ...addForm, status: 'confirmed' });
@@ -397,12 +406,12 @@ const BookingCalendar = () => {
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Client Name *</label>
                     <input
                       type="text"
-                      required
                       value={addForm.name}
-                      onChange={(e) => setAddForm({ ...addForm, name: e.target.value })}
+                      onChange={(e) => { setAddForm({ ...addForm, name: e.target.value }); setErrors({ ...errors, name: null }); }}
                       placeholder="e.g. John Doe"
-                      className="w-full bg-[#F9F9F9] border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                      className={`w-full bg-[#F9F9F9] border ${errors.name ? 'border-red-500' : 'border-black/5'} rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors`}
                     />
+                    {errors.name && <p className="text-red-500 text-[10px] mt-1 uppercase tracking-widest">{errors.name}</p>}
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Service Type *</label>
@@ -427,23 +436,23 @@ const BookingCalendar = () => {
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Phone Number *</label>
                     <input
                       type="text"
-                      required
                       value={addForm.phone}
-                      onChange={(e) => setAddForm({ ...addForm, phone: e.target.value })}
+                      onChange={(e) => { setAddForm({ ...addForm, phone: e.target.value }); setErrors({ ...errors, phone: null }); }}
                       placeholder="e.g. +91 9876543210"
-                      className="w-full bg-[#F9F9F9] border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                      className={`w-full bg-[#F9F9F9] border ${errors.phone ? 'border-red-500' : 'border-black/5'} rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors`}
                     />
+                    {errors.phone && <p className="text-red-500 text-[10px] mt-1 uppercase tracking-widest">{errors.phone}</p>}
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Email Address *</label>
                     <input
                       type="email"
-                      required
                       value={addForm.email}
-                      onChange={(e) => setAddForm({ ...addForm, email: e.target.value })}
+                      onChange={(e) => { setAddForm({ ...addForm, email: e.target.value }); setErrors({ ...errors, email: null }); }}
                       placeholder="e.g. client@example.com"
-                      className="w-full bg-[#F9F9F9] border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                      className={`w-full bg-[#F9F9F9] border ${errors.email ? 'border-red-500' : 'border-black/5'} rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors`}
                     />
+                    {errors.email && <p className="text-red-500 text-[10px] mt-1 uppercase tracking-widest">{errors.email}</p>}
                   </div>
                 </div>
 
@@ -452,12 +461,12 @@ const BookingCalendar = () => {
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Event Date *</label>
                     <input
                       type="date"
-                      required
                       min={new Date().toISOString().split('T')[0]}
                       value={addForm.eventDate}
-                      onChange={(e) => setAddForm({ ...addForm, eventDate: e.target.value })}
-                      className="w-full bg-[#F9F9F9] border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"
+                      onChange={(e) => { setAddForm({ ...addForm, eventDate: e.target.value }); setErrors({ ...errors, eventDate: null }); }}
+                      className={`w-full bg-[#F9F9F9] border ${errors.eventDate ? 'border-red-500' : 'border-black/5'} rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors`}
                     />
+                    {errors.eventDate && <p className="text-red-500 text-[10px] mt-1 uppercase tracking-widest">{errors.eventDate}</p>}
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Event Time</label>
