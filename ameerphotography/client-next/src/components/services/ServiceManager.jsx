@@ -63,7 +63,6 @@ const ServiceManager = () => {
     data.append('description', formData.description);
     const featuresArray = formData.features.split(',').map(f => f.trim()).filter(f => f);
     data.append('features', JSON.stringify(featuresArray));
-    data.append('price', formData.price);
     data.append('order', services.length);
     data.append('featuredOnHome', formData.featuredOnHome);
     data.append('visibility', formData.visibility);
@@ -98,7 +97,6 @@ const ServiceManager = () => {
       ? editFormData.features.split(',').map(f => f.trim()).filter(f => f)
       : editFormData.features;
     data.append('features', JSON.stringify(featuresArray));
-    data.append('price', editFormData.price);
     data.append('featuredOnHome', editFormData.featuredOnHome);
     data.append('visibility', editFormData.visibility);
 
@@ -216,11 +214,7 @@ const ServiceManager = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-             <div className="space-y-2">
-               <label className="text-[10px] uppercase tracking-widest font-bold text-primary/40">Pricing</label>
-               <input type="text" name="price" placeholder="e.g. Starting from $2000" value={formData.price} onChange={(e) => handleInputChange(e)} required className="w-full bg-light border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/20" />
-             </div>
+          <div className="grid grid-cols-1 gap-8">
              <div className="space-y-2">
                <label className="text-[10px] uppercase tracking-widest font-bold text-primary/40">Features (Comma Separated)</label>
                <input type="text" name="features" value={formData.features} onChange={(e) => handleInputChange(e)} required className="w-full bg-light border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/20" />
@@ -287,7 +281,6 @@ const ServiceManager = () => {
                   {!service.visibility && <span className="bg-red-100 text-red-500 text-[8px] uppercase tracking-widest px-2 py-0.5 rounded font-bold">Hidden</span>}
                 </div>
                 <p className="text-xs text-secondary/60 line-clamp-1 mb-2">{service.description}</p>
-                <p className="text-[10px] font-bold tracking-widest text-primary">{service.price || service.startingPrice}</p>
               </div>
 
               <div className="flex items-center gap-2 flex-shrink-0">
@@ -331,11 +324,7 @@ const ServiceManager = () => {
                     </div>
                   </div>
                   
-                  <div className="grid grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-[9px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Pricing</label>
-                      <input type="text" name="price" value={editFormData.price || editFormData.startingPrice} onChange={(e) => handleInputChange(e, true)} required className="w-full bg-light border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none" />
-                    </div>
+                  <div className="grid grid-cols-1 gap-6">
                     <div>
                       <label className="block text-[9px] uppercase tracking-widest font-bold text-secondary/40 mb-2">Features (Comma Separated)</label>
                       <input type="text" name="features" value={editFormData.features} onChange={(e) => handleInputChange(e, true)} required className="w-full bg-light border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none" />
