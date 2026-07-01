@@ -453,6 +453,7 @@ const BookingCalendar = () => {
                     <input
                       type="date"
                       required
+                      min={new Date().toISOString().split('T')[0]}
                       value={addForm.eventDate}
                       onChange={(e) => setAddForm({ ...addForm, eventDate: e.target.value })}
                       className="w-full bg-[#F9F9F9] border border-black/5 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors"

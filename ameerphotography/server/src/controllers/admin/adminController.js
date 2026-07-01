@@ -16,11 +16,18 @@ exports.getStats = async (req, res) => {
     
     const totalPhotos = standalonePhotosCount + galleryCount;
     
-    // Get this month's bookings
+    // Get this month's confirmed bookings (from Enquiries)
     const startOfMonth = new Date();
     startOfMonth.setDate(1);
     startOfMonth.setHours(0,0,0,0);
-    const thisMonthBookings = await Booking.countDocuments({ date: { $gte: startOfMonth } });
+    
+    const endOfMonth = new Date(startOfMonth);
+    endOfMonth.setMonth(endOfMonth.getMonth() + 1);
+
+    const thisMonthBookings = await Enquiry.countDocuments({ 
+      status: 'confirmed', 
+      eventDate: { $gte: startOfMonth, $lt: endOfMonth } 
+    });
 
     res.json({
       success: true,
