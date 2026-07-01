@@ -114,11 +114,7 @@ const Services = () => {
                     </ul>
                   </div>
 
-                  <div className="flex items-center justify-between pt-8 border-t border-black/20 dark:border-white/5">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-1">Investment From</p>
-                      <p className="text-2xl font-heading">{service.price || service.startingPrice}</p>
-                    </div>
+                  <div className="flex items-center justify-end pt-8 border-t border-black/20 dark:border-white/5">
                     <Link href={`/contact?service=${service.slug}`}
                       className="px-8 py-3 border border-primary/10 hover:border-primary text-[10px] uppercase tracking-[0.2em] transition-all duration-500 rounded-full hover:bg-primary hover:text-on-primary"
                     >
