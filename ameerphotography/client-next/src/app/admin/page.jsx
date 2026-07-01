@@ -384,7 +384,6 @@ const Admin = () => {
                         <div className={`p-2 rounded-lg ${stat.color}/10 text-${stat.color.split('-')[1]}-600`}>
                           <stat.icon size={20} />
                         </div>
-                        <span className="text-[10px] text-green-500 font-bold">+12%</span>
                       </div>
                       <h4 className="text-3xl font-heading mb-1">{stat.value}</h4>
                       <p className="text-[10px] uppercase tracking-widest text-secondary/40 font-bold">{stat.label}</p>
