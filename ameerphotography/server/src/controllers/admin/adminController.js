@@ -11,15 +11,10 @@ exports.getStats = async (req, res) => {
     // Count standalone photos
     const standalonePhotosCount = await Photo.countDocuments();
     
-    // Count photos inside galleries (cover images and image arrays)
-    const galleries = await Gallery.find({});
-    let galleryPhotosCount = 0;
-    galleries.forEach(g => {
-      if (g.coverImage && g.coverImage.url) galleryPhotosCount += 1;
-      if (g.images && g.images.length) galleryPhotosCount += g.images.length;
-    });
+    // Count portfolio collections (galleries)
+    const galleryCount = await Gallery.countDocuments();
     
-    const totalPhotos = standalonePhotosCount + galleryPhotosCount;
+    const totalPhotos = standalonePhotosCount + galleryCount;
     
     // Get this month's bookings
     const startOfMonth = new Date();

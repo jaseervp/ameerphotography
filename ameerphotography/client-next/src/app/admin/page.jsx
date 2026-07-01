@@ -376,7 +376,7 @@ const Admin = () => {
                   {[
                     { label: 'Total Enquiries', value: stats.totalEnquiries, icon: Users, color: 'bg-blue-500' },
                     { label: 'Pending Response', value: stats.pendingEnquiries, icon: Clock, color: 'bg-yellow-500' },
-                    { label: 'Total Photos', value: stats.totalPhotos, icon: ImageIcon, color: 'bg-purple-500' },
+                    { label: 'Total Collections', value: stats.totalPhotos, icon: ImageIcon, color: 'bg-purple-500' },
                     { label: 'Month Bookings', value: stats.thisMonthBookings, icon: CheckCircle, color: 'bg-green-500' },
                   ].map((stat, i) => (
                     <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md transition-shadow">
