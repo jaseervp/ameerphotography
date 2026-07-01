@@ -35,31 +35,53 @@ const StarRating = ({ value, onChange, readonly = false }) => {
 };
 
 const ReviewCard = ({ review }) => (
-  <motion.div
+  <motion.article
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white/60 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 rounded-[2rem] p-8 md:p-10 backdrop-blur-sm"
+    className="group flex flex-col p-8 md:p-10 border border-black/5 dark:border-white/5 bg-white/50 dark:bg-[#1A1A1A] rounded-[2.5rem] transition-all duration-700 hover:border-primary/20 dark:hover:border-white/20 hover:bg-white dark:hover:bg-[#222] hover:shadow-2xl hover:shadow-black/5"
   >
-    <div className="flex items-start justify-between mb-6">
+    {/* Review Text */}
+    <p className="font-heading text-base md:text-lg leading-relaxed text-primary/80 dark:text-white/80 mb-6 font-light flex-grow">
+      "{review.review}"
+    </p>
+
+    {/* User Profile & Stars */}
+    <div className="flex items-center justify-between pt-6 border-t border-black/5 dark:border-white/5 mt-auto">
       <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 flex items-center justify-center flex-shrink-0">
-          <span className="text-lg font-heading text-amber-700 dark:text-amber-400">
-            {(review.name || 'A')[0].toUpperCase()}
-          </span>
+        <div className="w-12 h-12 rounded-full overflow-hidden bg-light dark:bg-white/5 flex-shrink-0 border border-black/5 dark:border-white/10 flex items-center justify-center">
+          {review.image ? (
+            <img 
+              src={review.image} 
+              alt={review.name} 
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
+            />
+          ) : (
+            <span className="text-lg font-heading text-primary/30 dark:text-white/30 uppercase">
+              {(review.name || 'A')[0]}
+            </span>
+          )}
         </div>
-        <div>
-          <p className="font-bold text-sm text-primary">{review.name}</p>
-          <p className="text-[10px] uppercase tracking-widest text-secondary/40 mt-0.5">
-            {new Date(review.createdAt).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}
+        <div className="flex flex-col">
+          <h4 className="font-heading text-sm text-primary dark:text-white tracking-wide">
+            {review.name}
+          </h4>
+          <p className="text-[9px] text-secondary/30 uppercase tracking-[0.1em] mt-0.5">
+            {review.createdAt ? new Date(review.createdAt).toLocaleDateString() : ''}
           </p>
         </div>
       </div>
-      <StarRating value={review.rating} readonly />
+
+      <div className="flex gap-0.5">
+        {[...Array(5)].map((_, i) => (
+          <Star 
+            key={i} 
+            size={10} 
+            className={`${i < (review.rating || 5) ? 'fill-yellow-400 text-yellow-400' : 'text-black/5 dark:text-white/5'}`} 
+          />
+        ))}
+      </div>
     </div>
-    <p className="text-sm font-light leading-relaxed text-secondary/70 italic">
-      "{review.review}"
-    </p>
-  </motion.div>
+  </motion.article>
 );
 
 const Reviews = () => {
