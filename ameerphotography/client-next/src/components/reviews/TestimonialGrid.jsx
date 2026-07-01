@@ -34,17 +34,17 @@ const TestimonialGrid = ({ testimonials = [] }) => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="group h-full flex flex-col p-6 md:p-10 border border-black/5 dark:border-white/10 bg-white/50 dark:bg-white/5 rounded-[2rem] md:rounded-[2.5rem] transition-all duration-700 hover:border-primary/20 dark:hover:border-white/20 hover:bg-white dark:hover:bg-white/10 hover:shadow-2xl hover:shadow-black/5"
+              className="group h-full flex flex-col p-8 md:p-10 border border-black/5 dark:border-white/5 bg-white/50 dark:bg-[#1A1A1A] rounded-[2.5rem] transition-all duration-700 hover:border-primary/20 dark:hover:border-white/20 hover:bg-white dark:hover:bg-[#222] hover:shadow-2xl hover:shadow-black/5"
             >
               {/* Review Text */}
-              <p className="font-heading text-base md:text-xl leading-relaxed text-primary/80 dark:text-white/90 mb-6 font-light flex-grow">
+              <p className="font-heading text-base md:text-lg leading-relaxed text-primary/80 dark:text-white/80 mb-6 font-light flex-grow">
                 "{t.review || t.quote}"
               </p>
 
               {/* User Profile & Stars */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-black/5 dark:border-white/10">
+              <div className="flex items-center justify-between pt-6 border-t border-black/5 dark:border-white/5 mt-auto">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-light dark:bg-white/10 flex-shrink-0 border border-black/5 dark:border-white/10">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-light dark:bg-white/5 flex-shrink-0 border border-black/5 dark:border-white/10">
                     {t.image || t.user?.profilePic ? (
                       <img 
                         src={t.image || t.user?.profilePic} 
@@ -52,8 +52,8 @@ const TestimonialGrid = ({ testimonials = [] }) => {
                         className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-primary/10 dark:text-white/30">
-                        <User size={20} className="md:w-6 md:h-6" />
+                      <div className="w-full h-full flex items-center justify-center text-primary/10 dark:text-white/10">
+                        <User size={24} />
                       </div>
                     )}
                   </div>
@@ -62,23 +62,23 @@ const TestimonialGrid = ({ testimonials = [] }) => {
                       {t.name}
                     </h4>
                     {t.event && (
-                      <p className="text-[9px] text-secondary/50 dark:text-white/50 uppercase tracking-[0.2em] font-bold mt-0.5">
+                      <p className="text-[9px] text-secondary/40 uppercase tracking-[0.2em] font-bold mt-0.5">
                         {t.event}
                       </p>
                     )}
-                    <p className="text-[9px] text-secondary/40 dark:text-white/40 uppercase tracking-[0.1em] mt-0.5">
+                    <p className="text-[9px] text-secondary/30 uppercase tracking-[0.1em] mt-0.5">
                       {t.createdAt ? new Date(t.createdAt).toLocaleDateString() : ''}
                     </p>
                   </div>
                 </div>
 
-                {/* Star Rating */}
+                {/* Star Rating (Opposite of name) */}
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star 
                       key={i} 
-                      size={12} 
-                      className={`${i < (t.rating || 5) ? 'fill-yellow-400 text-yellow-400' : 'text-black/5 dark:text-white/10'}`} 
+                      size={10} 
+                      className={`${i < (t.rating || 5) ? 'fill-yellow-400 text-yellow-400' : 'text-black/5 dark:text-white/5'}`} 
                     />
                   ))}
                 </div>
