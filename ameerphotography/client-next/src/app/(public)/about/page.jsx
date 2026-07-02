@@ -72,7 +72,7 @@ const About = () => {
           className="md:w-5/12"
         >
           <ImageWithLoader 
-            src={content?.bio?.image || "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=800"} 
+            src={content?.bio?.image || "/camera.png"} 
             alt="Ameer Photography Studio and Work" 
             className="w-full h-auto aspect-[3/4] object-cover"
           />
