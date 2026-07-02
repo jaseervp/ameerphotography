@@ -16,9 +16,11 @@ import FireHero from "@/components/home/FireHero";
 import ServiceCard from "@/components/home/ServiceCard";
 import TestimonialGrid from "@/components/reviews/TestimonialGrid";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
+import PageLoader from "@/components/common/PageLoader";
 
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [highlightData, setHighlightData] = useState({
     smallHeading: 'Featured Highlights',
     mainTitlePart1: 'The Art of',
@@ -65,10 +67,12 @@ const Home = () => {
       }
     };
 
-    fetchHighlight();
-    fetchServices();
-    fetchReviews();
+    Promise.all([fetchHighlight(), fetchServices(), fetchReviews()]).finally(() => {
+      setIsLoading(false);
+    });
   }, []);
+
+  if (isLoading) return <PageLoader />;
 
   // ... rest of logic stays same ...
   return (

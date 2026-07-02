@@ -7,6 +7,7 @@ import Link from 'next/link';
 import PhotographerCard from "@/components/about/PhotographerCard";
 import api from "@/lib/api";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
+import PageLoader from "@/components/common/PageLoader";
 
 const About = () => {
   const [team, setTeam] = useState([]);
@@ -14,8 +15,7 @@ const About = () => {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
-    fetchContent();
-    fetchTeam();
+    Promise.all([fetchContent(), fetchTeam()]).finally(() => setLoading(false));
   }, []);
 
   const fetchContent = async () => {
@@ -26,8 +26,6 @@ const About = () => {
       }
     } catch (err) {
       console.error('Failed to fetch about content', err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -41,6 +39,8 @@ const About = () => {
       console.error('Failed to fetch photographers', err);
     }
   };
+
+  if (loading) return <PageLoader />;
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pb-20">
